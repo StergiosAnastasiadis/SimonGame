@@ -1,6 +1,7 @@
 //Lonx Eisai
 var gamePattern = [];
 var buttonColours = ["red", "blue", "green", "yellow"];
+var userClickedPattern = [];
 
 function nextSequence (){
   var randomNumber = Math.floor((Math.random() * 4 ));
@@ -15,8 +16,10 @@ function nextSequence (){
 };
 
 
-$(".btn").click(function(){
-  alert("Handler for .click() called");
+$(".btn").click(function() {
+  var userChosenColour = this.id;
+  userClickedPattern.push(userChosenColour);
+  console.log(userChosenColour); //Just Testing
 });
 
 //https://github.com/StergiosAnastasiadis/SimonGame.git
