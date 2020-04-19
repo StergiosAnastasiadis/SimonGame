@@ -13,3 +13,8 @@ function nextSequence (){
 
   console.log(randomNumber);
 };
+
+
+$(".btn").click(function(){
+  alert("Handler for .click() called");
+});
