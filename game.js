@@ -18,3 +18,5 @@ function nextSequence (){
 $(".btn").click(function(){
   alert("Handler for .click() called");
 });
+
+//https://github.com/StergiosAnastasiadis/SimonGame.git
