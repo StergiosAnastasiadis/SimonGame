@@ -14,7 +14,7 @@ function nextSequence() {
 
   console.log(randomNumber);
   console.log(randomChosenColour);
-};
+}
 
 
 $(".btn").click(function() {
@@ -24,5 +24,9 @@ $(".btn").click(function() {
   userClickedPattern.push(userChosenColour);
   console.log(userChosenColour); //Just Testing
 });
+
+function playSound(name) {
+  return name;
+}
 
 //https://github.com/StergiosAnastasiadis/SimonGame.git
