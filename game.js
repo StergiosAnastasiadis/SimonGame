@@ -43,4 +43,5 @@ $(document).on("keypress", function() {
   $("#level-title").html("Level " + level);
 });
 
+function checkAnswer(currentLevel){}
 //https://github.com/StergiosAnastasiadis/SimonGame.git
