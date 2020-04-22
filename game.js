@@ -6,7 +6,7 @@ var started = false;
 var level = 0;
 
 function nextSequence() {
-  level = level + 1;
+  level++;
   $("#level-title").html("Level " + level);
   var randomNumber = Math.floor((Math.random() * 4));
   var randomChosenColour = buttonColours[randomNumber];
@@ -22,6 +22,7 @@ $(".btn").click(function() {
   playSound(audio);
   userClickedPattern.push(userChosenColour);
   animatePress(userChosenColour);
+  checkAnswer(userClickedPattern.length - 1);
 });
 
 function playSound(name) {
@@ -43,5 +44,7 @@ $(document).on("keypress", function() {
   $("#level-title").html("Level " + level);
 });
 
-function checkAnswer(currentLevel){}
+function checkAnswer(currentLevel) {
+  console.log(currentLevel);
+}
 //https://github.com/StergiosAnastasiadis/SimonGame.git
