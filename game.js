@@ -45,6 +45,11 @@ $(document).on("keypress", function() {
 });
 
 function checkAnswer(currentLevel) {
+  if (userClickedPattern[userClickedPattern.length - 1] == gamePattern[gamePattern.length - 1]) {
+    console.log("success");
+  } else {
+    console.log("wrong");
+  }
   console.log(currentLevel);
 }
 //https://github.com/StergiosAnastasiadis/SimonGame.git
