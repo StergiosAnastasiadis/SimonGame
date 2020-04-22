@@ -10,8 +10,6 @@ function nextSequence() {
   $("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(150);
   window.audio = new Audio("sounds/" + randomChosenColour + ".mp3");
   playSound(audio);
-  console.log(randomNumber);
-  console.log(randomChosenColour);
 }
 
 $(".btn").click(function() {
@@ -19,10 +17,19 @@ $(".btn").click(function() {
   audio = new Audio("sounds/" + userChosenColour + ".mp3");
   playSound(audio);
   userClickedPattern.push(userChosenColour);
-  console.log(userChosenColour);
+  animatePress(userChosenColour);
 });
 
 function playSound(name) {
   audio.play(name);
 }
+
+function animatePress(currentColour) {
+  $("#" + currentColour).addClass("pressed");
+  setTimeout(function(){
+  $("#" + currentColour).removeClass("pressed");
+}, 100);
+}
+
+
 //https://github.com/StergiosAnastasiadis/SimonGame.git
