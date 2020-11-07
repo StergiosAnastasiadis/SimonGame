@@ -1,32 +1,45 @@
-//Lonx Eisai
-var gamePattern = [];
 var buttonColours = ["red", "blue", "green", "yellow"];
+var gamePattern = [];
 var userClickedPattern = [];
+
 var started = false;
 var level = 0;
 
+//______Start the Game by pressing a button______________
+$(document).on("keypress", function() {
+  if (started == false) {
+    nextSequence();
+    started = true;
+    $("#level-title").html("Level " + level);
+  }
+});
+
 function nextSequence() {
   level++;
+  userClickedPattern = [];
   $("#level-title").html("Level " + level);
   var randomNumber = Math.floor((Math.random() * 4));
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
   $("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(150);
-  window.audio = new Audio("sounds/" + randomChosenColour + ".mp3");
-  playSound(audio);
+  playSound(randomChosenColour);
 }
 
 $(".btn").click(function() {
+  if (started == false) {
+    return;
+  }
+
   var userChosenColour = this.id;
-  audio = new Audio("sounds/" + userChosenColour + ".mp3");
-  playSound(audio);
+  playSound(userChosenColour);
   userClickedPattern.push(userChosenColour);
   animatePress(userChosenColour);
-  checkAnswer(userClickedPattern.length - 1);
+  checkAnswer(userChosenColour);
 });
 
 function playSound(name) {
-  audio.play(name);
+  audio = new Audio("sounds/" + name + ".mp3");
+  audio.play();
 }
 
 function animatePress(currentColour) {
@@ -36,20 +49,30 @@ function animatePress(currentColour) {
   }, 100);
 }
 
-$(document).on("keypress", function() {
-  if (started == false) {
-    nextSequence();
-  }
-  started = true;
-  $("#level-title").html("Level " + level);
-});
-
+//Check if the last users input is correct
+//if Yes continue to the next level, else (gameover) start again
+//______________________________________________________________
 function checkAnswer(currentLevel) {
-  if (userClickedPattern[userClickedPattern.length - 1] == gamePattern[gamePattern.length - 1]) {
-    console.log("success");
-  } else {
-    console.log("wrong");
+  if (currentLevel == gamePattern[userClickedPattern.length - 1]) {} else {
+    $("body").addClass("game-over");
+    setTimeout(function() {
+      $("body").removeClass("game-over");
+    }, 200);
+
+    playSound("wrong");
+    $("#level-title").html("Game Over, Press Any Key to Restart");
+    startOver();
   }
-  console.log(currentLevel);
+
+  if (gamePattern.length == userClickedPattern.length) {
+    setTimeout(function() {
+      nextSequence();
+    }, 1000)
+  }
 }
-//https://github.com/StergiosAnastasiadis/SimonGame.git
+
+function startOver() {
+  gamePattern = [];
+  level = 0;
+  started = false;
+}
