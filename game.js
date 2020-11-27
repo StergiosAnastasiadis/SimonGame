@@ -7,7 +7,7 @@ var level = 0;
 
 //______Start the Game by pressing a button______________
 $(document).on("keypress", function() {
-  if (started == false) {
+  if (!started) {
     nextSequence();
     started = true;
     $("#level-title").html("Level " + level);
